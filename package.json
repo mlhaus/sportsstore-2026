@@ -4,10 +4,30 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "watch": "tsc-watch --noClear --onsuccess \"node dist/server.js\"",
+    "start": "nodemon --exec npm run watch"
+  },
+  "nodemonConfig": {
+    "ext": "js,handlebars,json",
+    "ignore": [
+      "dist/**",
+      "node_modules/**"
+    ]
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "type": "commonjs"
+  "type": "commonjs",
+  "devDependencies": {
+    "@tsconfig/node24": "^24.0.5",
+    "@types/express": "^5.0.6",
+    "@types/node": "^24.1.0",
+    "nodemon": "^3.1.14",
+    "tsc-watch": "^7.2.1",
+    "typescript": "^7.0.2"
+  },
+  "dependencies": {
+    "express": "^5.2.1",
+    "helmet": "^8.3.0"
+  }
 }
