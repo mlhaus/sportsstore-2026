@@ -6,7 +6,7 @@ import { createRoutes } from "./routes";
 import { createTemplates } from "./helpers";
 import { createErrorHandlers } from "./errors";
 
-const port = getConfig("http:port", 5000);
+const port = getConfig("http:port", 3000);
 const expressApp: Express = express();
 expressApp.use(helmet());
 expressApp.use(express.json());
