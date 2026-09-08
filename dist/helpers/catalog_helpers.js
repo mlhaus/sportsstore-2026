@@ -1,14 +1,14 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.pageSizeOptions = exports.pageButtons = exports.escapeUrl = exports.navigationUrl = void 0;
+exports.categoryButtons = exports.pageSizeOptions = exports.pageButtons = exports.escapeUrl = exports.navigationUrl = void 0;
 const querystring_1 = require("querystring");
 const querystring_2 = require("querystring");
 const getData = (options) => {
     return { ...options.data.root, ...options.hash };
 };
 const navigationUrl = (options) => {
-    const { page, pageSize } = getData(options);
-    return "/?" + (0, querystring_1.stringify)({ page, pageSize });
+    const { page, pageSize, category, searchTerm } = getData(options);
+    return "/?" + (0, querystring_1.stringify)({ page, pageSize, category, searchTerm });
 };
 exports.navigationUrl = navigationUrl;
 const escapeUrl = (url) => (0, querystring_2.escape)(url);
@@ -34,3 +34,16 @@ const pageSizeOptions = (options) => {
     return output;
 };
 exports.pageSizeOptions = pageSizeOptions;
+const categoryButtons = (options) => {
+    const { category, categories } = getData(options);
+    let output = "";
+    for (let i = 0; i < categories.length; i++) {
+        output += options.fn({
+            id: categories[i].id,
+            name: categories[i].name,
+            selected: category === categories[i].id
+        });
+    }
+    return output;
+};
+exports.categoryButtons = categoryButtons;

@@ -5,8 +5,8 @@ const getData = (options:HelperOptions) => {
     return {...options.data.root, ...options.hash}
 };
 export const navigationUrl = (options: HelperOptions) => {
-    const { page, pageSize } = getData(options);
-    return "/?" + stringify({ page, pageSize });
+    const { page, pageSize, category, searchTerm } = getData(options);
+    return "/?" + stringify({ page, pageSize, category, searchTerm });
 }
 export const escapeUrl = (url: string) => escape(url);
 export const pageButtons = (options: HelperOptions) => {
@@ -26,5 +26,17 @@ export const pageSizeOptions = (options: HelperOptions) => {
         output += options.fn({ size,
             selected: pageSize === size ? "selected": ""})
     })
+    return output;
+}
+export const categoryButtons = (options: HelperOptions) => {
+    const { category, categories } = getData(options);
+    let output = "";
+    for (let i = 0; i < categories.length; i++) {
+        output += options.fn({
+            id: categories[i].id,
+            name: categories[i].name,
+            selected: category === categories[i].id
+        })
+    }
     return output;
 }
