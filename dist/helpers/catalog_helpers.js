@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.pageButtons = exports.escapeUrl = exports.navigationUrl = void 0;
+exports.pageSizeOptions = exports.pageButtons = exports.escapeUrl = exports.navigationUrl = void 0;
 const querystring_1 = require("querystring");
 const querystring_2 = require("querystring");
 const getData = (options) => {
@@ -24,3 +24,13 @@ const pageButtons = (options) => {
     return output;
 };
 exports.pageButtons = pageButtons;
+const pageSizeOptions = (options) => {
+    const { pageSize } = getData(options);
+    let output = "";
+    [3, 6, 9].forEach(size => {
+        output += options.fn({ size,
+            selected: pageSize === size ? "selected" : "" });
+    });
+    return output;
+};
+exports.pageSizeOptions = pageSizeOptions;
