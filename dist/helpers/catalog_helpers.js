@@ -1,6 +1,10 @@
 "use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.categoryButtons = exports.pageSizeOptions = exports.pageButtons = exports.escapeUrl = exports.navigationUrl = void 0;
+exports.currency = exports.highlight = exports.categoryButtons = exports.pageSizeOptions = exports.pageButtons = exports.escapeUrl = exports.navigationUrl = void 0;
+const handlebars_1 = __importDefault(require("handlebars"));
 const querystring_1 = require("querystring");
 const querystring_2 = require("querystring");
 const getData = (options) => {
@@ -47,3 +51,20 @@ const categoryButtons = (options) => {
     return output;
 };
 exports.categoryButtons = categoryButtons;
+const highlight = (value, options) => {
+    const { searchTerm } = getData(options);
+    if (searchTerm && searchTerm !== "") {
+        const regexp = new RegExp(searchTerm, "ig");
+        const mod = value.replaceAll(regexp, "<strong>$&</strong>");
+        return new handlebars_1.default.SafeString(mod);
+    }
+    return value;
+};
+exports.highlight = highlight;
+const formatter = new Intl.NumberFormat("en-us", {
+    style: "currency", currency: "USD"
+});
+const currency = (value) => {
+    return formatter.format(value);
+};
+exports.currency = currency;

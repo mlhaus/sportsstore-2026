@@ -6,23 +6,29 @@
         <div class="col">
             {{> search_controls }}
             {{> page_controls }}
-            <table class="table table-sm table-striped">
-                <thead>
-                <tr>
-                    <th>ID</th><th>Name</th><th>Description</th>
-                    <th>Price</th><th>Category</th><th>Supplier</th>
-                </tr>
-                </thead>
-                <tbody>
+<!--            <table class="table table-sm table-striped">-->
+<!--                <thead>-->
+<!--                <tr>-->
+<!--                    <th>ID</th><th>Name</th><th>Description</th>-->
+<!--                    <th>Price</th><th>Category</th><th>Supplier</th>-->
+<!--                </tr>-->
+<!--                </thead>-->
+<!--                <tbody>-->
+<!--                {{#each products }}-->
+<!--                    <tr>-->
+<!--                        <td>{{id}}</td><td>{{name}}</td>-->
+<!--                        <td>{{description}}</td><td>{{price}}</td>-->
+<!--                        <td>{{category.name}}</td><td>{{supplier.name}}</td>-->
+<!--                    </tr>-->
+<!--                {{/each}}-->
+<!--                </tbody>-->
+<!--            </table>-->
+            <div class="d-flex justify-content-between flex-fill">
+                {{#unless products}}<h4>No products</h4>{{/unless}}
                 {{#each products }}
-                    <tr>
-                        <td>{{id}}</td><td>{{name}}</td>
-                        <td>{{description}}</td><td>{{price}}</td>
-                        <td>{{category.name}}</td><td>{{supplier.name}}</td>
-                    </tr>
+                    {{> product this }}
                 {{/each}}
-                </tbody>
-            </table>
+            </div>
             {{> page_controls }}
         </div><!-- col -->
     </div><!-- row -->
