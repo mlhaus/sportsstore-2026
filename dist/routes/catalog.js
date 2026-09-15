@@ -9,7 +9,7 @@ const createCatalogRoutes = (app) => {
         const searchTerm = req.query.searchTerm?.toString();
         const category = Number.parseInt(req.query.category?.toString() ?? "");
         const res = await data_1.catalog_repository.getProducts({ page, pageSize, searchTerm, category });
-        resp.render("index", { ...res, page, pageSize, pageCount: Math.ceil(res.totalCount / (pageSize ?? 1)), searchTerm, category });
+        resp.render("index", { ...res, page, pageSize, pageCount: Math.ceil(res.totalCount / (pageSize ?? 1)), searchTerm, category, show_cart: true });
     });
     app.get("/err", (req, resp) => {
         throw new Error("Something bad happened");

@@ -30,6 +30,7 @@
   },
   "dependencies": {
     "bootstrap": "^5.3.8",
+    "bootstrap-icons": "^1.13.1",
     "connect-session-sequelize": "^8.0.6",
     "dotenv": "^17.4.2",
     "express": "^5.2.1",

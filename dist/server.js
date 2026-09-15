@@ -17,6 +17,7 @@ expressApp.use((0, helmet_1.default)());
 expressApp.use(express_1.default.json());
 expressApp.use(express_1.default.urlencoded({ extended: true }));
 expressApp.use(express_1.default.static("node_modules/bootstrap/dist"));
+expressApp.use(express_1.default.static("node_modules/bootstrap-icons"));
 (0, helpers_1.createTemplates)(expressApp);
 (0, sessions_1.createSessions)(expressApp);
 (0, routes_1.createRoutes)(expressApp);
